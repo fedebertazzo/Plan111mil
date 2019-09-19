@@ -1,0 +1,1 @@
+SELECT empleados.Nombre, departamentos.Presupuesto from empleados INNER JOIN departamentos ON empleados.Departamento =departamentos.Codigo
