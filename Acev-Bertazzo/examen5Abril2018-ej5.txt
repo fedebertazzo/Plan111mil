@@ -1,0 +1,5 @@
+SELECT PP.* , GPP.nombreEmpresa
+FROM PaqueteProyectores AS PP 
+INNER JOIN GestorDePaquetesDeProyectores AS GPP
+ON PP.GestorDePaquetesDeProyectores_idGestorDePaquetes
+WHERE (PP.destino="Tucuman" AND PP.costoEnvio > 300)
