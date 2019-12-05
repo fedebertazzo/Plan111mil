@@ -1,0 +1,59 @@
+//Ejercicio 1
+public class TrabajoPracticoIntegrador extends TrabajoPractico {
+	private float puntajeMinimoPorEjercicio;
+
+	public TrabajoPracticoIntegrador (String tema, float puntajeDeAprobacion, float puntajeMinimoPorEjercicio){
+		super(tema,puntajeDeAprobacion);
+		this.puntajeDeAprobacion=puntajeDeAprobacion;
+	}
+
+	@Override
+	public boolean addEjercicio (Ejercicio ejercicio){
+		if(ejercicio.getPuntajeMaximo() < this.puntajeMinimoPorEjercicio){
+			return false;
+		}else{
+		return super.addEjercicio();
+		}
+	}
+}
+
+//Ejercicio 2
+
+//En la clase Alumno
+
+public boolean aproboAlguno (String tema){
+	for(Iterator<TrabajoPractico> it = this.trabajosPracticos.iterator(); it.hasNext();){
+		TrabajoPractico tpActual = it.next();
+		if(tpActual.esDeTema(tema)){
+			for(i=0;respuestas.size();i++){
+				return tpActual.estaAprobado(this.respuestas.get(i));
+			}
+		}else{
+			return false;
+		}
+	}
+}
+
+//Ejercicio 3
+//En la clase TrabajoPacticoIntegrador
+
+
+private int minimoEjerciciosCorrectos;
+
+@Override
+public boolean estaAprobado(List<String> respuestas){
+	int ejCorrectos = 0;
+	for(Iterator<Ejercicio> it = this.ejercicios.iterator();it.hasNext();){
+		Ejercicio ejActual = it.next();
+		if(ejActual.resueltoCorrectamente(respuestas)){
+			ejCorrectos ++;
+		}
+	return ejCorrectos>minimoEjerciciosCorrectos;
+}
+		
+
+
+
+
+
+	

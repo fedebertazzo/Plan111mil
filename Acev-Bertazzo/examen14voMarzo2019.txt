@@ -1,0 +1,84 @@
+//Ejercicio 1
+
+public class Profesor extends Persona {
+	private List<String> especialidades;
+	private Integer distanciaASede;
+	private String telefono;
+	
+	public void Profesor(String dni, String nombre, Integer distanciaASede, String telefono){
+		super(dni, nombre);
+		this.distanciaASede = distanciaASede;
+		this.telefono = telefono;
+		this.especialidades = new ArrayList<String>();
+	}
+	
+	public List<String> getEspecialidades(){
+		return especialidades;
+	}
+	
+	public Integer getDistaciaASede(){
+		return distanciaASede;
+	}
+
+	public String getTelefono(){
+		return telefono;
+	}
+
+	public void addEspecialidad (String especialidad){
+		especialidades.add(especialidad);
+	}
+
+	@Override
+	public String toString(){
+		return super.toString()+", "+telefono+", "+especialidades.size()+", "+distanciaASede
+	}
+
+//Ejercicio 2
+
+//En la clase Profesor
+
+public boolean telefonoNoVacio(Profesor profesor){
+	if (profesor.getTelefono != null){
+		return true;
+	}
+	return false;
+}
+
+/* public Profesor comparaEspecialidades(Profesor profesor1, Profesor profesor2){
+	if(profesor1.getEspecialidades().size() > profesor2.getEspecialidades().size()){
+		return profesor1;
+	}else{
+		return profesor2;
+	}
+	return null;
+}*/
+
+
+
+
+
+//En la clase Curso
+
+public List<Profesor> getSuplentes(){
+	return suplentes;
+}
+
+public Profesor getMejorSuplente(Curso curso){
+	suplentes = curso.getSuplentes();
+	mejorSuplente = suplentes.get(0);
+	for(Iterator<Profesor> it = suplentes.iterator();it.hasNext();){
+		Profesor supActual = it.next();
+		if(supActual.telefonoNoVacio()){
+			if(supActual.getDistanciaASede()< mejorSuplente.getDistanciaASede()){
+				mejorSuplente = supActual;
+			}else{
+				if(supActual.getDistanciaASede()== mejorSuplente.getDistanciaASede()){
+					if(supActual.getEspecialidades().size() > mejorSuplente.getEspecialidades().size()){
+						mejorSuplente = supActual	
+					}
+				}
+			}
+		}
+	}
+return mejorSuplente;
+}

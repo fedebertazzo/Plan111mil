@@ -1,0 +1,91 @@
+
+public class Turno{
+	private Date dia;
+	private Time hora;
+	private inte nroConsultorio;
+	private int nroPaciente;
+
+	public void Turno (Date dia, Time hora, int nroConsultorio, int nroPaciente){
+		this.dia = new dia;
+		this.hora = new hora;
+		this.nroConsultorio = new nroConsultorio;
+		this.nroPaciente = new nroPaciente;
+	}
+	public Date getDia(){
+		return dia;
+	}
+	public void setDia(Date dia){
+	}
+	public Time getHora(){
+		return hora;
+	}
+	public int getNroConsultorio(){
+		return consultorio;
+	}
+	public void setNroConsultorio(int nroConsultorio){
+	}
+	public int getNroPaciente(){
+		return paciente;
+	}
+}
+
+---------------------------------------------------------------------------------
+public class Consultorio{
+	private int nroConsultorio;
+	private String medico;
+	private List<Turno> turnos;
+	
+	public void Consultorio(int NroConsultorio, String medico){
+		this.nroConsultorio = new nroConsultorio;
+		this.medico = new medico;
+	}
+	public void agregarTurno(Date dia, Time hora, int nroPaciente){
+		Turno turno = new Turno(dia, hora, nroPaciente);
+		turnos.add(Turno);
+	}
+}
+
+>>Ejercicio 2<<
+>>La clase cuenta con el método esMismoDia(Date dia1, Date dia2)<<
+
+	public void cancelarTurno(int nroConsultorio,Date diaPinta,List<Turno> turnos){
+		for(Iterator<Turno> it = turnos.iterator();iterator.hasNext();){
+			Turno turno = it.next();
+			turno.getDia() = diaTurno;
+			turnos.esMismoDia(diaPinta,diaTurno);
+}
+
+--------------------------------------------------------------------------------
+public class Paciente{
+	private int nroPaciente;
+	private int telefono;
+	private String nombre;
+
+	public void Paciente(int telefono, String nombre){
+		this.telefono = telefono;
+		this.nombre = new nombre;
+	}
+	public void setNombre(String nombre){
+	}
+	public int getTelefono(){
+		return telefono;
+	}
+}
+
+
+------------------------------------------------------------------------------
+
+
+<<Ejercicio 3>>
+1. Nada
+2. Error
+3.
+4. Error
+5. Salida
+
+
+
+----------------------------------------------------------------------
+<<Ejercicio 5>>
+SELECT t.* FROM Turno t INNER JOIN Consultorio c ON t.CONSULTORIO_nroConsultorio = c.nroConsultorio WHERE nroConsultorio = 5 ORDER BY t.dia;
+

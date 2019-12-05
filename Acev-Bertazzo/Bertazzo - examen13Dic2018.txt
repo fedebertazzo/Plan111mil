@@ -1,0 +1,62 @@
+//Ejercicio 1
+
+import java.util.List
+import Date;
+import Time;
+
+
+class Consultorio{
+
+	private int nroConsultorio;
+	private String medico;
+	private List<Turno> turnos;
+
+	public void Consultorio (int nroConsultorio, String medico){
+		this.nroConsultorio = nroConsultorio;
+		this.medico = medico;
+		this.turnos = new ArrayList<Turnos>();
+	}
+
+	public void agregarTurno(Date dia, Time hora, int nroPaciente){
+		Turno turno = new Turno(dia,hora,nroPaciente);
+		turnos.add(turno);
+	}
+}
+
+//Ejercicio 2
+
+//En la clase Consultorio creamos el método cancelarTurnos
+
+	public void cancelarTurnos(Date diaCancelar){
+		for (int i=0; i<turnos.size();i++){
+			Turno turnoActual=turnos.get(i);
+			if (turno.esMismoDia(turnoActual.getDia(),diaCancelar){
+				turnos.remove(turnoActual);
+			}
+		}
+	}
+
+
+//Utilizando Iterator
+	public void cancelarTurnos2(Date diaCancelar){
+		for (Iterator<Turno> it = turnos.iterator(); it.hasNext()){
+			Turno turnoActual= it.next();
+			if (turno.esMismoDia(turnoActual.getDia(),diaCancelar){
+				turnos.remove(turnoActual);
+			}
+		}
+	}
+
+//Ejercicio 3
+Nada
+Error
+Nada
+Error
+Salida
+
+//Ejercicio 5
+SELECT t.* FROM Turno AS t
+INNER JOIN Consultorio AS c
+ON t.CONSULTORIO_nroConsultorio = c.nroConsultorio
+WHERE c.nroConsultorio = '5'
+ORDER BY t.dia

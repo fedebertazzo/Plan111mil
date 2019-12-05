@@ -1,0 +1,81 @@
+//Ejercicio 1
+public Class Alumno extends Persona{
+	private int añoDeIngreso;
+	private List<Curso> cursadas;
+
+	public Alumno (String nombre, String apellido, int dni, int añoDeIngreso){
+		super(nombre, apellido, dni);
+		this.añoDeIngreso = añoDeIngreso;
+		this.cursadas = new ArrayList<Curso>();
+	}
+
+	public int getAñoDeIngreso(){
+		return this.añoDeIngreso;
+	}
+
+	public void addCurso(Curso curso){
+		this.cursadas.add(curso);
+	}
+	
+//Ejercicio 2
+Ok si me posiciono en la clase Curso.
+Si lo hago en la clase Profesor, no haría falta la lista cursosProfe.
+
+public List<Curso> obtenerCursos(Profesor profe, int año){
+	List<Curso> cursosResultado = new ArrayList<Curso>(); //Creamos la lista resultado para el return
+	List<Curso> cursosProfe = profe.getCursosDictados(); ///////FALTA CREAR METODO getCursosDictados() //////
+
+	for( Iterator<Curso> it = cursosProfe.iterator; it.hasNext();){
+		Curso cursoActual = it.next(); //Seleciona un curso de la lista
+		List<Almuno> listaAlumnos = cursoActual.getAlumnos(); ///////FALTA CREAR METODO getAlumno() //////
+		for(Iterator<Alumno> itAlum = listaAlumnos.iterator(); itAlum.hasNext();){
+			Alumno alumnoActual = itAlum.next(); //Selecciona un alumno de la lista
+			if(alumnoActual.getAñoDeIngreso()< año){
+				cursosResultado.add(cursoActual);
+			}
+		}
+	}
+	return cursosResultado;
+}
+
+//Ejercicio 3
+En la clase Curso
+
+public boolean agregarAlumno(Alumno nuevoAlumno){
+	if(alumnos.size()<maximoAlumnos){
+		alumnos.add(nuevoAlumno);
+		alumno.add(this);
+		return true;
+	}
+	return false;
+}
+
+
+//Ejercicio 4
+
+System.out.println(a1);        
+System.out.println(a2);       
+System.out.println(a3);
+ 
+orden: nombre apellido dni año de ingreso cursadas
+Daenerys Targaryen  123456 2018 2
+Jon Snow 123457 2017 3
+Cersei Lannister 123458 2018 1
+
+//Ejercicio 5
+SELECT COUNT (Alumno.añoDeIngreso), Alumno.añoDeIngreso
+FROM Alumno INNER JOIN Inscriptos_a_Curso
+ON Alumno.dni = Inscriptos_a_Curso.dni 
+GROUP BY Alumno.añoDeIngreso 
+ORDER BY Alumno.añoDeIngreso DESC;
+
+//Resultado consulta
+2018 2
+2017 1
+
+//Otra
+SELECT COUNT (DISTINCT Inscripto_a_Curso.Alumno_dni), Alumno.añoDeIngreso
+FROM Alumno INNER JOIN Inscriptos_a_Curso
+ON Alumno.dni = Inscriptos_a_Curso.dni 
+GROUP BY Inscripto_a_Curso.Alumno_dni 
+ORDER BY Alumno.añoDeIngreso DESC;

@@ -1,0 +1,61 @@
+//Examen 17 - Lunes 24 de Junio 2019
+
+//Ejercicio 1
+public Class ExamenEspecial extends Examen{
+	private float penalizacionRespuestaIncorrecta;
+
+	public ExamenEspecial(String tema, float puntajeAprobacion, float penalizacion){
+		super(tema, puntajeAprobacion);
+		this.penalizacion = penalizacion;
+	}
+	public float getPenalizacionRespuestaIncorrecta(){
+		return this.PenalizacionRespuestaIncorrecta;
+	}
+	@Override
+	public void addPregunta(Pregunta pregunta){
+		if(pregunta.getPuntaje > penalizacionRespuestaIncorrecta)
+			super.addPregunta(pregunta);
+	}
+		
+//Ejercicio 2	
+//En la clase Examen
+
+public float calcularNota(List<Integer> respuestas){
+	Integer nota = 0;
+	for(i=0;i < respuestas.size();i++){
+		Pregunta pregActual=preguntas.get(i);
+		if(pregActual.esCorrecta(respuestas.get(i))){
+			nota= nota + pregActual.getPuntaje();
+		}
+	}
+	return nota;
+}
+
+//En la clase ExamenEspecial
+@Override
+public float calcularNota(List<Integer> respuestas){
+	Integer nota = 0;
+	for(i=0;i < respuestas.size();i++){
+		Pregunta pregActual=preguntas.get(i);
+		if(pregActual.esCorrecta(respuestas.get(i))){
+			nota= nota + pregActual.getPuntaje();
+		}else{
+			nota=nota - pregActual.getPenalizaciónRespuestaIncorrecta;
+	}
+	return nota;
+}
+
+//Ejercicio 3
+//En la clase Alumno VEEEERRR
+public boolean rendirExamen(Examen examen, List<Integer> respuestas){
+	RendicionDeExamen examenActual = new RendicionDeExamen(examen, respuestas);
+	if(!examenActual.estaAprobado(){
+		this.examenesRendidos.add(examen);
+	return true;
+	}
+	return false;
+}
+
+
+
+
