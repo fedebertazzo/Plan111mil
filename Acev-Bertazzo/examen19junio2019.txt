@@ -30,14 +30,29 @@ public boolean estaAprobado(List<float> notas){
 
 //En la clase CursoEspecial
 @Override
-
 public boolean estaAprobado(List<float> notas){
   float suma=0;
   for(i=1, i< notas.size();i++){
     suma=suma+notas.get(i);
     }
-  float promedio = suma/(notas.size()-1);
+  float promedio = suma/=(notas.size()-1); //Utiliza el igual para sacar el resultado de la operación dentro del paréntesis
   return(super.estaAprobado(notas) && promedio > this.notaMinimaTrabajo);
+}
+
+//Ejercicio 3
+public boolean inscribirACurso(Capacitacion capacitacion){
+  int capVirtuales = 0;
+  for(Iterator<Capacitacion> it=this.capacitaciones.iterator(); it.hasNext();){
+    capActual = it.next();
+    if(capActual.getCurso().getModalidad()=="virtual"){
+      capVirtuales++;
+    }
+  }
+  if(capVirtuales <= this.cupoModalidadVirtual || capacitacion.getCurso().getModalidad() == "presencial"){
+    return this.capacitaciones.add(capacitacion);
+  }else{
+    return false;
+  }
 }
 
 //Ejercicio 4
@@ -56,7 +71,6 @@ WHERE Curso.modalidad = "presencial"
 GROUP BY I.DNI
 ORDER BY I.DNI DESC
 
-123456 6.5
-123457 5.5
 123458 5.5
-
+123457 5.5
+123456 5.5
