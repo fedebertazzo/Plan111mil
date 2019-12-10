@@ -1,1 +1,41 @@
 //Ejercicio 1
+//En la clase CursoEspecial
+public Class CursoEspecial extends Curso{
+  private float notaMinimaTrabajo;
+  
+public CursoEspecial(String nombre, String modalidad, float minimoNotaCurso, float notaMinimaTrabajo){
+  super(nombre, modalidad, minimoNotaCurso);
+  this.minimoNotaTrabajo = minimoNotaTrabajo;
+  }
+
+public float getNotaMinimaTrabajo(){
+  return notaMinimaTrabajo;
+  }
+
+public void setNotaMinimaTrabajo(float nota){
+  this.notaMinimaTrabajo = nota;
+  }
+}
+
+//Ejercicio 2
+//En la clase Curso
+
+public boolean estaAprobado(List<float> notas){
+  if(notas.get(0) >= minimoNotaCurso){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+//En la clase CursoEspecial
+@Override
+
+public boolean estaAprobado(List<float> notas){
+  float suma=0;
+  for(i=1, i< notas.size();i++){
+    suma=suma+notas.get(i);
+    }
+  float promedio = suma/(notas.size()-1);
+  return(super.estaAprobado(notas) && promedio > this.notaMinimaTrabajo);
+  
