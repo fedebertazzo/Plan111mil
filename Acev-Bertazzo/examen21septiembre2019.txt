@@ -50,3 +50,11 @@ public int obtenerCantidadCombos(String nombre){
 	}
 	return cantCombo;
 }
+
+//Ejercicio 4
+//El método aplica el descuento al precio del combo, siempre y cuando tenga puntos necesarios para el canje
+//Resultado:
+270.0
+159.2
+250.0 //No tiene los puntos necesarios para aplicar el descuento
+
