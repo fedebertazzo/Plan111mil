@@ -35,7 +35,7 @@ public boolean aproboAlguno (String tema){
 }
 
 //Ejercicio 3
-//En la clase TrabajoPacticoIntegrador
+//En la clase TrabajoPracticoIntegrador
 
 
 private int minimoEjerciciosCorrectos;
@@ -48,7 +48,7 @@ public boolean estaAprobado(List<String> respuestas){
 		if(ejActual.resueltoCorrectamente(respuestas)){
 			ejCorrectos ++;
 		}
-	return ejCorrectos>minimoEjerciciosCorrectos;
+	return (super.estaAprobado(respuestas) && ejCorrectos>minimoEjerciciosCorrectos);
 }
 		
 //Ejercicio 4
