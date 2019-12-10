@@ -58,3 +58,17 @@ public int obtenerCantidadCombos(String nombre){
 159.2
 250.0 //No tiene los puntos necesarios para aplicar el descuento
 
+//Ejercicio 5
+SELECT C.nombre, COUNT(OC.idOrden)
+FROM Cliente AS C
+INNER JOIN OrdenDeCompra AS OC
+ON C.DNI = OC.Cliente_DNI
+INNER JOIN Combo
+ON OC.Combo_idCombo = Combo.idCombo
+WHERE Combo.nombre = "Avispa" && OC.descuento >= 10
+GROUP BY C.nombre
+ORDER BY C.nombre
+
+
+//Resultado
+Mariana 1
