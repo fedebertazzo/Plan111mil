@@ -38,4 +38,25 @@ public boolean estaAprobado(List<float> notas){
     }
   float promedio = suma/(notas.size()-1);
   return(super.estaAprobado(notas) && promedio > this.notaMinimaTrabajo);
-  
+}
+
+//Ejercicio 4
+6
+8
+7
+
+//Ejercicio 5
+SELECT I.DNI, AVG(C.nota)
+FROM Instructor AS I
+INNER JOIN Capacitacion AS C
+ON I.DNI = C.Instructor_DNI
+INNER JOIN Curso
+ON C.Curso_idCurso = Curso.idCurso
+WHERE Curso.modalidad = "presencial"
+GROUP BY I.DNI
+ORDER BY I.DNI DESC
+
+123456 6.5
+123457 5.5
+123458 5.5
+
