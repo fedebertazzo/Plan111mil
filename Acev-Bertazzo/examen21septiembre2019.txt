@@ -1,0 +1,22 @@
+//Ejercicio 1
+//En la clase ComboEspecial
+public Class ComboEspecial extends Combo{
+	private List<Float> preciosObsequios;
+	private float valorCanjeEspecial;
+
+	public ComboEspecial(String nombre, float precio, float puntosDescuento, List<Float> preciosObsequios, float valorCanjeEspecial){
+		super(nombre, precio, puntosDescuento);
+		this.preciosObsequios = new ArrayList<Float>();
+		this.valorCanjeEspecial = valorCanjeEspecial;
+	}
+
+	public List<Float> getPreciosObsequios(){
+		return this.preciosObsequios;
+	}
+
+	public float getValorCanjeEspecial(){
+		return this.valorCanjeEspecial;
+	}
+}
+
+	
