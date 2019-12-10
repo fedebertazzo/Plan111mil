@@ -51,6 +51,21 @@ public boolean estaAprobado(List<String> respuestas){
 	return ejCorrectos>minimoEjerciciosCorrectos;
 }
 		
+//Ejercicio 4
+ejercicio1 ejercicio2 ejercicio3 ejercicio4
+ejercicio3 ejercicio4 ejercicio5
+
+//Ejercicio5
+SELECT A.idAlumno, SUM(R.puntaje)
+FROM Alumno AS A
+INNER JOIN Ejercicio AS E
+ON R.idEjercicio=E.idEjercicio
+INNER JOIN TrabajoPractico AS TP
+ON E.idTrabajoPractico=TP.idTrabajoPractico
+WHERE TP.tema="geografia politica"
+GROUP BY A.idAlumno
+ORDER BY SUM(R.puntaje) DESC
+
 
 
 
