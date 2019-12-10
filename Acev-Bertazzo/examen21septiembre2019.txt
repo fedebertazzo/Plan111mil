@@ -6,7 +6,7 @@ public Class ComboEspecial extends Combo{
 
 	public ComboEspecial(String nombre, float precio, float puntosDescuento, List<Float> preciosObsequios, float valorCanjeEspecial){
 		super(nombre, precio, puntosDescuento);
-		this.preciosObsequios = new ArrayList<Float>();
+		this.preciosObsequios = preciosObsequios; //No se inicializa la lista pq ingresa por parámetro
 		this.valorCanjeEspecial = valorCanjeEspecial;
 	}
 
@@ -19,4 +19,21 @@ public Class ComboEspecial extends Combo{
 	}
 }
 
-	
+//Ejercicio 2
+//En la clase Combo
+public boolean esPosibleCanjearCombo(float puntosAcumulados){
+	return puntosAcumulados >= this.getPuntosDescuento();
+}
+
+//En la clase ComboEspecial
+
+@Override
+public boolean esPosibleCanjearCombo(float puntosAcumulados){
+	float sumaPreciosObjetos = 0;
+	for(Iterator<Float> it = preciosObsequios.iterator(); it.hasNext();){
+		Float precioActual = it.next();
+		sumaPrecioObsequios+=precioActual;
+	}
+	return super.esPosibleCanjearCombo && sumaPrecioObsequios>this.valorCanjeEspecial;
+}
+
