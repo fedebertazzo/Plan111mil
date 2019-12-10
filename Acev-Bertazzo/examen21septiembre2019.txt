@@ -37,3 +37,16 @@ public boolean esPosibleCanjearCombo(float puntosAcumulados){
 	return super.esPosibleCanjearCombo(puntosAcumulados) && sumaPrecioObsequios>this.valorCanjeEspecial;
 }
 
+//Ejercicio 3
+//En clase Cerveceria
+
+public int obtenerCantidadCombos(String nombre){
+	int cantCombo = 0;
+	for(Iterator<OrdenDeCompra> it = ordenesDeCompra.iterator(); it.hasNext();){
+		OrdenDeCompra ordenActual = it.next();
+		if(ordenActual.getCombo().getNombre() == nombre){
+			cantCombo++;
+		}
+	}
+	return cantCombo;
+}
