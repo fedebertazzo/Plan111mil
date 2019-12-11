@@ -1,0 +1,55 @@
+//Ejercicio 1
+public Class NivelEspecial extends Nivel{
+	private int minutosDeVideoNecesarios;
+	
+	public NivelEspecial (int minutosDeVideoNecesarios, String nombre, int ejerciciosNecesarios){
+		super(nombre, ejerciciosNecesarios);
+		this.minutosDeVideoNecesarios = minutosDeVideoNecesarios;
+	}
+	
+	public int getMinutosDeVideoNecesarios(){
+		return this.minutosDeVideoNecesarios;
+	}
+	
+	public void setMinutosDeVideoNecesarios(int minutosDeVideoNecesarios){
+		this.minutosDeVideoNecesarios=minutosDeVideoNecesarios;
+	}
+}
+
+//Ejercicio 2
+//En la clase Nivel
+public boolean terminaNivel (List<Integer> estadoAlumno){
+	return estadoAlumno.get(0)>= this.getEjerciciosNecesarios();
+}
+
+//En la clase NivelEspecial
+@Override
+public boolean terminaNivel(List<Integer> estadoAlumno){
+	int sumaMinutos=0;
+	for(int i=1; i < estadoAlumno.size();i++){
+		sumaMinutos+=estadoAlumno.get(i);
+	}
+	return super.terminaNivel(List<Integer> estadoAlumno) && sumaMinutos >= this.minutosDeVideoNecesarios;
+}
+
+//Ejercicio 3
+//En la clase Capacitacion
+public List<Nivel> obtenerNivelesConEjercicios(int minEjercicios){
+	List<Nivel> resultado = new ArrayList<Nivel>();
+	for(Iterator<Nivel> it = niveles.iterator();it.hasNext()){
+		Nivel nivelActual = it.next();
+		if(nivelActual.getEjerciciosNecesarios() >= minEjercicios){
+			resultado.add(nivelActual);
+		}
+	}
+	return resultado;
+}
+
+//Ejercicio 4
+//Agrega un nuevo nivel ("6") con la cantidad de ejercicio necesarios del valor de ejercicios al último nivel de la lista niveles + la cantidad de ejercicios ingresado por parámetro (50+5)
+//Resultado:
+55
+
+//Ejercicio 5
+...
+		
