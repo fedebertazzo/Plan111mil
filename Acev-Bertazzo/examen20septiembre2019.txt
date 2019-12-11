@@ -10,41 +10,65 @@ public Class SalaDeConferenciaPrivada extends SalaDeConferencia{
 		this.personasHabilitadas.add(persona);
 	}
 	
-	//Ejercicio 2
-	//En la clase SalaDeConferencia
-	public boolean abrir(Conferencia conferencia){
-		Date fechaActual = new Date();
+//Ejercicio 2
+//En la clase SalaDeConferencia
+public boolean abrir(Conferencia conferencia){
+	Date fechaActual = new Date();
 		return conferencia.getSalaDeConferencia().equals(this) && conferencia.contieneFecha(fechaActual);
 	}
 	
-	//En la clase SalaDeConferenciaPrivada
-	@Override
-	public boolean abrir(Conferencia conferencia){
-		for(Iterator<String> it = this.personasHabilitadas.iterator(); it.hasNext();){
-			String personaActual = it.next();
-			if(conferencia.tieneInvitado(personaActual){
-				return super.abrir(conferencia);
-			}
+//En la clase SalaDeConferenciaPrivada
+@Override
+public boolean abrir(Conferencia conferencia){
+	for(Iterator<String> it = this.personasHabilitadas.iterator(); it.hasNext();){
+		String personaActual = it.next();
+		if(conferencia.tieneInvitado(personaActual){
+			return super.abrir(conferencia);
 		}
-		return false;
 	}
+	return false;
+}
 	
-	//Ejercicios 3
-	//En la clase conferencia
-	public boolean colisiona(Conferencia otra){
-		if(this.contieneFecha(otra.getFechaInicio()) || this.contieneFecha(otra.getFechaFin())){
+//Ejercicios 3
+//En la clase conferencia
+public boolean colisiona(Conferencia otra){
+	if(this.contieneFecha(otra.getFechaInicio()) || this.contieneFecha(otra.getFechaFin())){
+		return true;
+	}else{
+		if(this.getSalaDeConferencia().equals(otra.getSalaDeConferencia())){
 			return true;
 		}else{
-			if(this.getSalaDeConferencia().equals(otra.getSalaDeConferencia())){
-				return true;
-			}else{
-				for(Iterator<String> it = this.invitados.iterator(); it.hasNext();){
-					String invitadoActual = it.next();
-					if(otra.tieneInvitado(invitadoActual))
-						return true;
-					}
+			for(Iterator<String> it = this.invitados.iterator(); it.hasNext();){
+				String invitadoActual = it.next();
+				if(otra.tieneInvitado(invitadoActual)){
+					return true;
 				}
 			}
-			return false;
 		}
-			
+	}
+	return false;
+}
+
+//Ejercicio 4
+//Método misterioso2: devuelve true si la variable NO es NULL y NO es VACIA
+//Método misterioso1: de los elementos de la lista "dispositivos", los compara y los ordena alfabéticamente. Si son iguales, agrega sólo uno.
+
+//Resultado:
+[] //resultado vacío
+[appletv, microfono, proyector-1, proyector-2, tv]
+[appletv, microfono, proyector, tv]
+
+//Ejercicio 5
+SELECT C.FechaDeInicio, SC.habitacion, COUNT(D.idDispositivo)
+FROM Conferencia AS C
+INNER JOIN SalaDeConferencia AS SC
+ON C.idSalaDeConferencia = SC.idSalaDeConferencia
+INNER JOIN Dispositivo AS D
+ON SC.idSalaDeConferencia = D.idSalaDeConferencia
+WHERE SC.piso=1 AND SC.ala=2 AND D.nombre LIKE "proyector%"
+GROUP BY C.FechaDeInicio, SC.habitacion
+HAVING COUNT(D.idDispositivo) > 1
+
+//Resultado
+"2019-01-01 15:00:00" "101" "2"
+"2019-03-26 08:00:00" "198" "3"
