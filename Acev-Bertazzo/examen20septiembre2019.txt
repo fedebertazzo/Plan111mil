@@ -1,0 +1,50 @@
+//Ejercicio 1
+public Class SalaDeConferenciaPrivada extends SalaDeConferencia{
+	private ArrayList<String> personasHabilitadas;
+	
+	public SalaDeConferenciaPrivada(Integer piso, Integer ala,Integer habitacion){
+		super(piso, ala, habitacion);
+		this.personasHabilitadas = new ArrayList<String>();
+		}
+	public void agregarPersonaHabilitada(String persona){
+		this.personasHabilitadas.add(persona);
+	}
+	
+	//Ejercicio 2
+	//En la clase SalaDeConferencia
+	public boolean abrir(Conferencia conferencia){
+		Date fechaActual = new Date();
+		return conferencia.getSalaDeConferencia().equals(this) && conferencia.contieneFecha(fechaActual);
+	}
+	
+	//En la clase SalaDeConferenciaPrivada
+	@Override
+	public boolean abrir(Conferencia conferencia){
+		for(Iterator<String> it = this.personasHabilitadas.iterator(); it.hasNext();){
+			String personaActual = it.next();
+			if(conferencia.tieneInvitado(personaActual){
+				return super.abrir(conferencia);
+			}
+		}
+		return false;
+	}
+	
+	//Ejercicios 3
+	//En la clase conferencia
+	public boolean colisiona(Conferencia otra){
+		if(this.contieneFecha(otra.getFechaInicio()) || this.contieneFecha(otra.getFechaFin())){
+			return true;
+		}else{
+			if(this.getSalaDeConferencia().equals(otra.getSalaDeConferencia())){
+				return true;
+			}else{
+				for(Iterator<String> it = this.invitados.iterator(); it.hasNext();){
+					String invitadoActual = it.next();
+					if(otra.tieneInvitado(invitadoActual))
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+			
